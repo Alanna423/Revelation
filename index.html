@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,  initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  
+
+
+  <style>
+    h1,
+    figcaption,
+    p {
+      font-family: Rosarivo, serif;
+    }
+
+    body {
+      padding-center: 260px;
+    }
+  </style>
+  <title>Bruh</title>
+ 
+    
+ 
+</head>
+
+<body>
+  <h1>Start</h1>
+  <p>Time Traveler are you ready to begin?</p>
+
+  <button type="button" onClick="makeShape()"> Click to make shape </button>
+  <canvas id="game" width="800" height="500"></canvas>
+  <script src="timePeriods.js"></script>
+
+  <a href="storyLine.html" class="bord"> jaida testting? </a>
+  <br><br>
+  <button id="one" onClick="changePage()">Start!</button>
+  <script>
+    function changePage() {
+      window.location.href = "./next.html";
+    }
+  </script>
+
+  <h3>Adding onClick event handler for JavaScript Button</h3>
+  <p>Click below to see the onClick functionality</p>
+  <button type="button" id="btn" onClick="sampleClick()">Click Here!</button>
+  <p id="samplebtn"></p>
+  <script>
+    function sampleClick() {
+      document.getElementById("btn").innerHTML = "You have clicked on JavaScript button";
+    }
+  </script>
+
+
+
+    
+</body>
+
+</html>
