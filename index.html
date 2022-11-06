@@ -7,56 +7,53 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,  initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  
 
-
-  <style>
-    h1,
-    figcaption,
-    p {
-      font-family: Rosarivo, serif;
-    }
-
-    body {
-      padding-center: 260px;
-    }
-  </style>
   <title>Bruh</title>
- 
-    
- 
+
 </head>
 
 <body>
-  <h1>Start</h1>
-  <p>Time Traveler are you ready to begin?</p>
 
-  <button type="button" onClick="makeShape()"> Click to make shape </button>
-  <canvas id="game" width="800" height="500"></canvas>
-  <script src="timePeriods.js"></script>
+  <table class="bound"> <!-- table is used to make border around screen -->
+    <tr>
+      <th>
+        <center>
+          <h1 class="center">Revelation</h1>
+          <h4 class="center">Time Traveler are you ready to begin?</h4>
 
-  <a href="storyLine.html" class="bord"> jaida testting? </a>
-  <br><br>
-  <button id="one" onClick="changePage()">Start!</button>
-  <script>
-    function changePage() {
-      window.location.href = "./next.html";
-    }
-  </script>
+          <a href="storyLine.html" class="bord"> jaida testing? </a>
+          <br><br>
+<!--       <button id="huh" onclick="change()">NNN</button>
+        <script> 
+          function change() {
+            sessionStorage.setItem("level", 0)
+          sessionStorage.getItem('label')
+          var x = document.createElement("BUTTON");
+          var t = document.createTextNode("Click me");
+          x.appendChild(t);
+          document.body.appendChild(x);
+          }
+        </script>
+           -->
+          <button id="new" onClick="changePage()">New Game</button>
+          <script>
+            function changePage() {
+              
+              window.location.href = "./levelSelect.html";
+            }
+          </script>
 
-  <h3>Adding onClick event handler for JavaScript Button</h3>
-  <p>Click below to see the onClick functionality</p>
-  <button type="button" id="btn" onClick="sampleClick()">Click Here!</button>
-  <p id="samplebtn"></p>
-  <script>
-    function sampleClick() {
-      document.getElementById("btn").innerHTML = "You have clicked on JavaScript button";
-    }
-  </script>
+          <button id="continue" onClick="changePage()">Continue Game</button>
+          <script>
+            function changePage() {
+              window.location.href = "./levelSelect.html";
+            }
+          </script>
+        </center>
+      </th>
+    </tr>
+  </table>
 
-
-
-    
 </body>
 
 </html>
