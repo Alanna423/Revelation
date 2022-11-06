@@ -10,7 +10,6 @@ const correctAnswer = [0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0] //correct answer opti
 const questions = ["What dynasty ruled China for nearly 400 years?", "The rise and fall of the ___ Empire is one of the most\n\consequential events of ancient history.", "In 1922, excited explorers found the tomb of which famous ancient ruler?", "Who was created with making the first map of the world", "Period of European history between ancient and modern times is called Middle Ages", "The average lifespan during the middle ages was what?", "Foreigners were called traitors.", "Who gave up all his wealth to serve God?", "What happened on 28th June 1914?", "NATO replaced the League of Nations when it failed to prevent World War 2.", "Who was the President of the United States at the start of the 20th Century?", "1963 was the year Valentina Tereshkova become the first woman in space."]
 const answers = ["Han", "Tang", "Mughal", "Roman", "Ramesses 2", "Tutankhamen", "Anaximander", "Christopher Columbus", "True", "False", "28", "35", "True", "False", "St. Francis", "Don Quiote", "Assassination of Archduke\n\Franz Ferdinand", "Bombing of the\n\Austrian Embassy in Serbia", "True", "False", "Theodore Roosevelt", "William Mckinley", "True", "False"]
 // Score var
-let scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 let percent = 0
 let points = 0  //total trivia score
 
@@ -203,6 +202,7 @@ function mouseClicked() {
     if (mouseX > windowWidth / 3 - 50 && mouseX < windowWidth / 3 + 150 && mouseY > windowHeight / 5 * 3 && mouseY < windowHeight / 5 * 3 + 100) {
       if (correctAnswer[currentQuestion] == 0) {
         questionComplete[currentQuestion] = 1; //mark as complete
+        points++
       } else {
         questionComplete[currentQuestion] = -1; //mark as complete
       }
@@ -211,6 +211,7 @@ function mouseClicked() {
     else if (mouseX > windowWidth / 3 * 2 - 50 && mouseX < windowWidth / 3 * 2 + 150 && mouseY > windowHeight / 5 * 3 && mouseY < windowHeight / 5 * 3 + 100) {
       if (correctAnswer[currentQuestion] == 1) {
         questionComplete[currentQuestion] = 1; //mark as complete
+        points++
       } else {
         questionComplete[currentQuestion] = -1; //mark as complete
       }
