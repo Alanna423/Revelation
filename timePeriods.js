@@ -2,25 +2,18 @@
 // main
 let scene = 1
 let squareSize = 100
-let points = 0 //total trivia score
 let back = 1
-// Open/Closed var (time periods)
-let ancient = 1
-let middle = 1
-let present = 1
-// Time period ques (keep track of q)
-let quesAncient = 1
-let quesMiddle = 1
-let quesPresent = 1
 
-const currentQuestion = -1
+let currentQuestion = -1
 const questionComplete = [0,0,0,0,0,0,0,0,0,0,0,0] //4 Q's for each time period
-const correctAnswer = [0,1,0,0,0,0,0,0,0,0,0,0] //correct answer options
+const correctAnswer = [1,1,0,1,0,1,0,1,0,1,1,1] //correct answer options
 const questions = ["Hi, answer me this.","2","3","4","21","22","23","24","31","32","33","34"]
-const answers = ["Option 1","Option 2","Option 1","Option 2","Option 1","Option 2","","","","","","","","","","","","","","","","","",""]
+const answers = ["Option 11","Option 22","Option 1","Option 2","Option 1","Option 2","","","","","","","","","","","","","","","","","",""]
 // Score var
-const scoring = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+let scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 let percent = 0
+let points = 0  //total trivia score
+
 
 
 function setup() {
@@ -37,25 +30,25 @@ function draw() {
   if (scene == 1) { 
     noStroke()
   // SQUARES FOR QUES
-    // // Ancient
-    if (ancient == 1){
-      fill("ivory")
-    } else {
+    // Ancient
+    if (questionComplete[0]!=0 && questionComplete[1]!=0 && questionComplete[2]!=0 && questionComplete[3]!=0){
       fill("gray")
+    } else {
+      fill("ivory")
     }
     rect(windowWidth/7, windowHeight/7 * 3, squareSize, squareSize)
     // Middle
-    if (middle == 1){
-      fill("ivory")
-    } else {
+    if (questionComplete[4]!=0 && questionComplete[5]!=0 && questionComplete[6]!=0 && questionComplete[7]!=0){
       fill("gray")
+    } else {
+      fill("ivory")
     }
     rect(windowWidth/7 * 3, windowHeight/7 * 3, squareSize, squareSize)
     // Present
-    if (present == 1){
-      fill("ivory")
-    } else {
+    if (questionComplete[8]!=0 && questionComplete[9]!=0 && questionComplete[10]!=0 && questionComplete[11]!=0){
       fill("gray")
+    } else {
+      fill("ivory")
     }
     rect(windowWidth/7 * 5, windowHeight/7 * 3, squareSize, squareSize)
   
@@ -90,7 +83,7 @@ function draw() {
     fill("ivory")
     rect(windowWidth/2 - 40, windowHeight/4 * 3, 80, 40)
     fill("black")
-    text("BACK", windowWidth/2, windowHeight/4 * 3 + 20) 
+    text("B for BACK", windowWidth/2, windowHeight/4 * 3 + 20) 
   }
   // Questions for Middle
   if (scene == 3){
@@ -113,7 +106,7 @@ function draw() {
     fill("ivory")
     rect(windowWidth/2 - 40, windowHeight/4 * 3, 80, 40)
     fill("black")
-    text("BACK", windowWidth/2, windowHeight/4 * 3 + 20) 
+    text("B for BACK", windowWidth/2, windowHeight/4 * 3 + 20) 
   }
   // Questions for Present
   if (scene == 4){
@@ -136,11 +129,33 @@ function draw() {
     fill("ivory")
     rect(windowWidth/2 - 40, windowHeight/4 * 3, 80, 40)
     fill("black")
-    text("BACK", windowWidth/2, windowHeight/4 * 3 + 20) 
+    text("B for BACK", windowWidth/2, windowHeight/4 * 3 + 20) 
   }
   if (scene == 5) {
     question()
   }  
+  
+  // Ending page
+  if (scene == 6) {
+    if (points >= 9) {
+      textSize(30)
+      background("green")
+      text("Congrats! You have reached normalacy!", windowWidth/2, windowHeight/2)
+    } else if (points >= 6) {
+      textSize(30)
+      text("You are getting close to reaching normalacy", windowWidth/2, windowHeight/2)
+    } else if (points < 6) {
+      textSize(30)
+      background("red")
+      text("YOU HAVE FAILED TO REACH NORMALACY...", windowWidth/2, windowHeight/2)
+    }
+    
+  }
+  
+  //B goes back to main page
+  if (keyIsPressed && key == 'b') {
+    scene = 1
+  }
 } // Ending 
 
 
@@ -179,14 +194,27 @@ function mouseClicked() {
     } else if (mouseX > windowWidth/9 * 7 - squareSize/2 && mouseX < windowWidth/9 * 7 + squareSize/2 && mouseY > windowHeight/7 * 3 - squareSize/2 && mouseY < windowHeight/7 * 3 + squareSize/2){
       currentQuestion = 4*(scene-1)
     }
-    
+    currentQuestion += 1;
     scene = 5
+
+  //ANSWER QUESTION
   } else {
+    //PICKED FIRST OPTION
     if (mouseX > windowWidth/3 - 50 && mouseX < windowWidth/3+150 && mouseY > windowHeight/5*3 && mouseY < windowHeight/5*3 + 100){
-      scene = 2
+      if (correctAnswer[currentQuestion]==0) {
+        questionComplete[currentQuestion] = 1; //mark as complete
+      } else {
+        questionComplete[currentQuestion] = -1; //mark as complete
+      }
     }
+  
+    //PICKED SECOND OPTION
     if (mouseX > windowWidth/3 * 2 - 50 && mouseX < windowWidth/3 * 2 + 150 && mouseY > windowHeight/ 5* 3 && mouseY < windowHeight/5 * 3 + 100){
-      scene = 2
+      if (correctAnswer[currentQuestion]==1) {
+        questionComplete[currentQuestion] = 1; //mark as complete
+      } else {
+        questionComplete[currentQuestion] = -1; //mark as complete
+      }
     }
   }
   
@@ -194,38 +222,39 @@ function mouseClicked() {
 
 //has scene 
 function question() {
-  fill("ivory")
-  rect(windowWidth/3 - 100, windowHeight/5 * 3, 200, 100)
-  rect(windowWidth/3 * 2 - 100, windowHeight/5*3,200,100)
-  textSize(20)
-  fill("black")
-  text(questions[currentQuestion-1], windowWidth/2, windowHeight/4)
-  text(answers[(currentQuestion*2-2)], windowWidth/3, windowHeight/5 * 3 + 50)
-  text(answers[currentQuestion*2-1], windowWidth/3 * 2, windowHeight/5 * 3 + 50)
-
+  if (questionComplete[currentQuestion]==0) {
+    fill("ivory")
+  } else if (questionComplete[currentQuestion]==1){
+    fill("green")
+  } else {
+    fill("red")
+  }
+    noStroke()
+    rect(windowWidth/3 - 100, windowHeight/5 * 3, 200, 100)
+    rect(windowWidth/3 * 2 - 100, windowHeight/5*3,200,100)
+    fill("black")
+    text(questions[currentQuestion]+" ", windowWidth/2, windowHeight/4)
+    text(answers[currentQuestion*2]+" ", windowWidth/3, windowHeight/5 * 3 + 50)
+    text(answers[currentQuestion*2+1]+" ", windowWidth/3 * 2, windowHeight/5 * 3 + 50)
+ 
   // Back button
   fill("ivory")
   rect(windowWidth/2 - 40, windowHeight/4 * 3, 80, 40)
   fill("black")
-  text("BACK", windowWidth/2, windowHeight/4 * 3 + 20)
+  text("B for BACK", windowWidth/2, windowHeight/4 * 3 + 20)
   
 }
 
 
-// function score() {
-//   for(let i = 0; i < 13; i = i + 1) {
-//     points = score[i] + points
-//   }
-//   percent()
-// }
-
+function score() {
+  for(let i = 0; i < 12; i = i + 1) {
+    points = scoring[i] + points
+  }
+  //percent()
+}
 
 // function percent() {
 //   percent = points/12 * 100 
-// }
-
-// function ending() {
-//   // random
 // }
 
 /*
