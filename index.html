@@ -7,56 +7,43 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,  initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  
 
-
-  <style>
-    h1,
-    figcaption,
-    p {
-      font-family: Rosarivo, serif;
-    }
-
-    body {
-      padding-center: 260px;
-    }
-  </style>
-  <title>Bruh</title>
- 
-    
- 
+  <title>Revelation</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 </head>
 
 <body>
-  <h1>Start</h1>
-  <p>Time Traveler are you ready to begin?</p>
 
-  <button type="button" onClick="makeShape()"> Click to make shape </button>
-  <canvas id="game" width="800" height="500"></canvas>
-  <script src="timePeriods.js"></script>
+  <table class="bound">
+    <!-- table is used to make border around screen -->
+    <tr>
+      <th>
+        <center>
+          <h1 class="center">Revelation</h1>
+          <h4 class="center">Time Traveler are you ready to begin?</h4>
+          <br><br>
+          <button id="new" onClick="changePage()">Start Game</button>
+          <br><br>
+          <script>
+            function changePage() {
+              window.location.href = "./storyLine.html";
+            }
+          </script>
 
-  <a href="storyLine.html" class="bord"> jaida testting? </a>
-  <br><br>
-  <button id="one" onClick="changePage()">Start!</button>
-  <script>
-    function changePage() {
-      window.location.href = "./next.html";
-    }
-  </script>
+          <h1>Our Mission: </h1>
+          <p>Welcome time traveler… </p>
+          <p>
+            Recently the Board of Time and Space has determined multiple instances of improper use of your traveling
+            powers. In order to keep your powers you must fix the errors in time you have created. Once you have
+            completed all 3 restorations, you will regain full use of your powers once again. In order to repair the
+            timeline, you must choose the right answers to make the right changes to time. As of right now you are
+            restricted to traveling to Ancient Times, the Middle Ages, and the 20th Century.
+          </p>
+        </center>
+      </th>
+    </tr>
+  </table>
 
-  <h3>Adding onClick event handler for JavaScript Button</h3>
-  <p>Click below to see the onClick functionality</p>
-  <button type="button" id="btn" onClick="sampleClick()">Click Here!</button>
-  <p id="samplebtn"></p>
-  <script>
-    function sampleClick() {
-      document.getElementById("btn").innerHTML = "You have clicked on JavaScript button";
-    }
-  </script>
-
-
-
-    
 </body>
 
 </html>
